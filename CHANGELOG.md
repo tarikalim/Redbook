@@ -36,3 +36,6 @@ and versions follow [Semantic Versioning](https://semver.org/).
 ### Changed
 
 - GPU memory is trimmed after 2 s idle instead of when the display link stops.
+
+[Unreleased]: https://github.com/tarikalim/Redbook/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/tarikalim/Redbook/releases/tag/v0.1.1
