@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Redbook
+Comment=Local-only notes and databases
+Exec=redbook
+Icon=redbook
+Terminal=false
+Categories=Office;Utility;
+StartupWMClass=redbook

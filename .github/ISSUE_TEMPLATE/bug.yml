@@ -1,0 +1,38 @@
+name: Bug report
+description: Something does not work as it should
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you saw instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a page and …
+        2. Type …
+        3. …
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Redbook version
+      description: From the release you installed, or `git rev-parse --short HEAD`.
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: Operating system and version
+      placeholder: macOS 26.1 (Apple M3), Ubuntu 24.04, Windows 11
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots, logs, the page as markdown (`get_page`)
+      description: Leave out anything private.

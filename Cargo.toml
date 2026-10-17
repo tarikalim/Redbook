@@ -1,0 +1,56 @@
+[workspace]
+members = ["."]
+exclude = ["vendor"]
+resolver = "3"
+
+[package]
+name = "redbook"
+version = "0.1.1"
+edition = "2024"
+description = "Local-first, block-based notes: pages, blocks and databases, very low memory, synced through git."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/tarikalim/Redbook"
+readme = "README.md"
+keywords = ["notes", "mcp", "gpui", "sqlite", "local-first"]
+categories = ["text-editors", "gui"]
+publish = false
+
+[dependencies]
+# gpui-kit re-exports GPUI (gpui-pre 0.3.8 = zed@279fe07), gpui-base, gpui-component and Lucide icons.
+gpui-kit = "=0.7.1"
+rusqlite = { version = "0.40", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.11"
+uuid = { version = "1", features = ["v4", "serde"] }
+anyhow = "1"
+zip = { version = "9.0.1", default-features = false, features = ["deflate-flate2-zlib-rs"] }
+chrono = "0.4"
+dirs = "6"
+notify = "8"
+futures = "0.3"
+
+[profile.dev]
+# Deps optimized so the UI stays responsive in debug builds.
+package."*" = { opt-level = 2 }
+
+[build-dependencies]
+winresource = "0.1"
+
+[dev-dependencies]
+gpui-kit = { version = "=0.7.1", features = ["test-support"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
+
+[patch.crates-io]
+# gpui-pre-macos 0.3.8 + idle stop of the display link (search "idle_frames" in window.rs).
+gpui-pre-macos = { path = "vendor/gpui-pre-macos" }
+# gpui-pre-apple 0.3.8 (Metal renderer) vendored for memory work.
+gpui-pre-apple = { path = "vendor/gpui-pre-apple" }
+# gpui-pre 0.3.8 + idle trim of per-frame buffers (search "trim_frame_memory" in window.rs).
+gpui-pre = { path = "vendor/gpui-pre" }
+# gpui-base 0.7.1 + cursor stops blinking after 10 blinks without input (search "MAX_BLINKS").
+gpui-base = { path = "vendor/gpui-base" }
